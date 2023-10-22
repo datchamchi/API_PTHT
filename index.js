@@ -18,6 +18,12 @@ mongoose
 app.use(cors());
 app.use(express.json());
 app.use(bodyParser.json());
+app.get("/", (req, res) => {
+  res.status(200).json({
+    status: "success",
+    message: "Hello",
+  });
+});
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use("/api/den/qlmau", QLDenRouter);
 app.use("/api/den/qlnhan", QLNhanDen);
