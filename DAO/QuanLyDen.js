@@ -5,6 +5,7 @@ import NhanDen from "../model/QuanLyNhanDen.js";
 
 // Quan ly mau den
 export const getAllMauDen = async (req, res) => {
+  console.log("GET:ALL");
   try {
     const data = await MauDen.find();
     res.json({
@@ -36,6 +37,7 @@ export const getMauDenById = async (req, res) => {
 export const addMauDen = async (req, res, next) => {
   try {
     const { description } = req.body;
+    console.log(description);
     if (!req.file) {
       next(new Error("No file uploaded!"));
       return;
@@ -46,11 +48,13 @@ export const addMauDen = async (req, res, next) => {
       description,
       filename,
     });
+
     res.json({
       status: "success",
       data: mauden,
     });
   } catch (err) {
+    console.log(err.message);
     res.status(500).json({
       status: "failed",
       message: err.message,
