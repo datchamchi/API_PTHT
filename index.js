@@ -32,7 +32,7 @@ app.use("/api/den/qlmau", QLDenRouter);
 app.use("/api/den/qlnhan", QLNhanDen);
 app.use("/api/vach/qlmau", QLVachRouter);
 app.use("/api/vach/qlnhan", QLNhanVach);
-app.use("/api/mohinh", MoHinhRouter);
+app.use("/api/model", MoHinhRouter);
 
 app.use("*", (req, res) => {
   return res.status(404).json({
