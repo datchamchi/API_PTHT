@@ -1,15 +1,15 @@
 import cloudinary from "cloudinary";
 import uploadCloud from "../config/cloudinary.config.js";
-import MauDen from "../model/QuanlyMauDen.js";
-import NhanDen from "../model/QuanLyNhanDen.js";
+import MauDen from "../model/MauDen.js";
+import NhanDen from "../model/NhanDen.js";
 
 // Quan ly mau den
 export const getAllMauDen = async (req, res) => {
-  console.log("GET:ALL");
   try {
     const data = await MauDen.find();
     res.json({
       status: "success",
+      length: data.length,
       data,
     });
   } catch (err) {
@@ -37,7 +37,6 @@ export const getMauDenById = async (req, res) => {
 export const addMauDen = async (req, res, next) => {
   try {
     const { description } = req.body;
-    console.log(description);
     if (!req.file) {
       next(new Error("No file uploaded!"));
       return;
@@ -54,7 +53,6 @@ export const addMauDen = async (req, res, next) => {
       data: mauden,
     });
   } catch (err) {
-    console.log(err.message);
     res.status(500).json({
       status: "failed",
       message: err.message,
@@ -65,9 +63,7 @@ export const updateMauDen = async (req, res, next) => {
   try {
     const { id } = req.params;
     const { description } = req.body;
-    console.log(description);
     const data = await MauDen.findById(id);
-    console.log(data);
     if (req.file) {
       await cloudinary.uploader.destroy(data.filename);
       data.image = req.file.path;
@@ -113,6 +109,7 @@ export const getAllNhanDen = async (req, res) => {
     const data = await NhanDen.find();
     res.status(200).json({
       status: "success",
+      length: data.length,
       data,
     });
   } catch (err) {

@@ -7,6 +7,7 @@ import cors from "cors";
 import { QLNhanDen } from "./router/QuanLyNhanDen.js";
 import { QLVachRouter } from "./router/QuanLyMauVach.js";
 import { QLNhanVach } from "./router/QuanLyNhanVach.js";
+import MoHinhRouter from "./router/QuanLyMoHinh.js";
 dotenv.config();
 const app = express();
 
@@ -31,6 +32,14 @@ app.use("/api/den/qlmau", QLDenRouter);
 app.use("/api/den/qlnhan", QLNhanDen);
 app.use("/api/vach/qlmau", QLVachRouter);
 app.use("/api/vach/qlnhan", QLNhanVach);
+app.use("/api/mohinh", MoHinhRouter);
+
+app.use("*", (req, res) => {
+  return res.status(404).json({
+    status: "failed",
+    message: "Path not found",
+  });
+});
 
 const port = process.env.PORT || 8080;
 app.listen(port, (err) => {

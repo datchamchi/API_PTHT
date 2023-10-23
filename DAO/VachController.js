@@ -1,7 +1,7 @@
 import cloudinary from "cloudinary";
 import uploadCloud from "../config/cloudinary.config.js";
-import MauVach from "../model/QuanlyMauVach.js";
-import NhanVach from "../model/QuanLyNhanVach.js";
+import MauVach from "../model/MauVach.js";
+import NhanVach from "../model/NhanVach.js";
 
 // Quan ly mau Vach
 export const getAllMauVach = async (req, res) => {
@@ -9,6 +9,7 @@ export const getAllMauVach = async (req, res) => {
     const data = await MauVach.find();
     res.json({
       status: "success",
+      length: data.length,
       data,
     });
   } catch (err) {
@@ -52,7 +53,6 @@ export const addMauVach = async (req, res, next) => {
       data: mauVach,
     });
   } catch (err) {
-    console.log(err.message);
     res.status(500).json({
       status: "failed",
       message: err.message,
@@ -110,6 +110,7 @@ export const getAllNhanVach = async (req, res) => {
     const data = await NhanVach.find();
     res.status(200).json({
       status: "success",
+      length: data.length,
       data,
     });
   } catch (err) {
