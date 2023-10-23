@@ -5,6 +5,8 @@ import mongoose from "mongoose";
 import bodyParser from "body-parser";
 import cors from "cors";
 import { QLNhanDen } from "./router/QuanLyNhanDen.js";
+import { QLVachRouter } from "./router/QuanLyMauVach.js";
+import { QLNhanVach } from "./router/QuanLyNhanVach.js";
 dotenv.config();
 const app = express();
 
@@ -27,6 +29,8 @@ app.get("/", (req, res) => {
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use("/api/den/qlmau", QLDenRouter);
 app.use("/api/den/qlnhan", QLNhanDen);
+app.use("/api/vach/qlmau", QLVachRouter);
+app.use("/api/vach/qlnhan", QLNhanVach);
 
 const port = process.env.PORT || 8080;
 app.listen(port, (err) => {

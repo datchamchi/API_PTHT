@@ -65,8 +65,9 @@ export const updateMauDen = async (req, res, next) => {
   try {
     const { id } = req.params;
     const { description } = req.body;
+    console.log(description);
     const data = await MauDen.findById(id);
-
+    console.log(data);
     if (req.file) {
       await cloudinary.uploader.destroy(data.filename);
       data.image = req.file.path;

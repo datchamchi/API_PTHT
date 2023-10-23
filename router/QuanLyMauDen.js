@@ -5,7 +5,7 @@ import {
   getAllMauDen,
   getMauDenById,
   updateMauDen,
-} from "../DAO/QuanLyDen.js";
+} from "../DAO/DenController.js";
 import uploadCloud from "../config/cloudinary.config.js";
 
 const QLDenRouter = Router();

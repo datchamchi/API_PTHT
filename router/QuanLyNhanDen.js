@@ -5,7 +5,7 @@ import {
   getAllNhanDen,
   getNhanDenById,
   updateNhanDen,
-} from "../DAO/QuanLyDen.js";
+} from "../DAO/DenController.js";
 
 const QLNhanDen = Router();
 
