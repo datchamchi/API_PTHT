@@ -1,20 +1,8 @@
 import { Schema, model } from "mongoose";
 const NhanDenSchema = new Schema({
-  dendo: {
-    type: Boolean,
-    required: [true, "Cho biết ảnh có đèn đỏ hay không"],
-  },
-  toadoX: {
-    type: Number,
-  },
-  toadoY: {
-    type: Number,
-  },
-  width: {
-    type: Number,
-  },
-  height: {
-    type: Number,
+  status: {
+    type: String,
+    required: [true, "Cho biết ảnh den co mau gi"],
   },
   idMau: {
     type: Schema.Types.ObjectId,
